@@ -1,0 +1,139 @@
+https://youtube.com/playlist?list=PLWQK2ZdV4Yl2k2OmC_gsjDpdIBTN0qqkE&si=BkSqwdpJOA1R129L
+
+*******************************************************
+%we can add app build file to each Subdir so project structure will look like this%
+Each file get it's implementation but java plgins must be the same
+
+app3
+   app
+       build.gradle.kts %app build file
+   
+   business-logic
+       build.gradle.kts
+   
+  data-model
+      build.gradle.kts
+
+   settings.build.kts  %app3 build file
+Sssssssssssssssssssssssssssssssssssssssssswsswswwwwwwssss
+
+
+         settings.gradle.kts %app3 build file
+#################################
+ 
+ rootProject.name="app3"
+
+pluginManagement  {            % library of gradle itself
+   repositories {       %online sources
+       gradlePluginPortal()
+       google()
+        }
+    //includeBuild("../my-build-logic")  %local instalation source. % optionnal
+}
+
+dependencyResulutionManamgement { %dependencies source
+  repositories{
+    mavenCentral()  %Example of online dependency source
+       }
+    //includeBuild("../my-other-project") % local repertory source
+}
+
+   include ("app")           % project subdir
+   include ("business-logic")  % project subdir
+   include ("data-model")      % project subdir
+%we can use instead to include subdirs:%
+
+rootDir.ListFiles.filter { it.isDirrectory && !it.isHidden }
+ . forEach( include.name)  }
+Sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+
+
+
+
+         build.gradle.kts % app.app3 build file
+#####################################₹#####
+plugins {
+    id("java-lirary") %java programing Lang from java core delivered in gradle
+    id("org.jetbrains.kotlin.jvm") version "1.5.21" % kotlin prg Lang from comminity 
+}
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion(11) ) %java version
+}
+
+task.test{
+    useJUnitPLatform()
+}
+kotlin{
+}
+dependencies{
+    implementation( project(":data-model") ) % bring dependencies of data model project
+    implementation("group.id:artifact-id:version.id") % bring online dependency
+}
+Ssssssssssssssssssssssssssssswwwwsssssssssssssssssssssss
+
+
+
+%%%Import java plugins from external kotlin project%%%%%%
+#####################₹##########################
+
+app3
+   app
+       build.gradle.kts %app build file
+   
+   business-logic
+       build.gradle.kts
+   
+   data-model
+      build.gradle.kts
+
+   settings.build.kts  %Myproject_01 build file
+
+my-build-logic
+   java-plugin
+       build.gradle.kts
+       src
+          main
+             kotin
+                 my-java-library.gradle.kts
+   settings.build.kts
+********************************************************
+
+    settings.gradle.kts %my-build-logic build file
+#################################
+rootProject.name="my-build-logic"
+
+pluginManagement  {            % library of gradle itself
+   repositories {       %online sources
+       gradlePluginPortal()
+}
+include ("java-plugin")   
+sssssssssssssssssssssssssssssssssssssssssssss
+
+    
+
+     build.gradle.kts % app.my-build-logic build file
+#####################################₹#####
+plugins {
+      `kotlin-dsl`
+}
+dependencies{
+implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21")
+}
+sssssssssssssssssssssssssssssssssssssssssssssssssaaaaaaaa
+
+      my-java-labrary.gradle.kts mainclass
+#####################################₹#####
+plugins {
+    id("java-lirary") %java programing Lang from java core delivered in gradle
+    id("org.jetbrains.kotlin.jvm") version "1.5.21" % kotlin prg Lang from comminity 
+}
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion(11) ) %java version
+}
+
+task.test{
+    useJUnitPLatform()
+}
+kotlin{
+}
+sssssssssssssssssssssssssssssssssssssssssssssss

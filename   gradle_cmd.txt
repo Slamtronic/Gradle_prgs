@@ -1,0 +1,12 @@
+gradle task  //get available tasks
+gradle build --console=plain //get build tasks
+gradle build --console=plain --build-cache//
+    //get build from cache tasks
+gradle app:tasks  //list app subdir tasks 
+  // other os gradle :app:tasks
+
+gradle build --refresh-dependencies    //sync depen..
+gradle build --stacktrace//info scan
+gradle projects// list prectcs
+
+gradle appsubdir:listTasks. // lists all tasks in subapp
