@@ -1,9 +1,9 @@
-//business-logic
+//app
 
 plugins{
 //id("base")
 
- id("my-java-base")
+ id("my-java-aplication")
  
 //id("application")
 }
