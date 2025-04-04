@@ -9,5 +9,6 @@ tasks.register("qualityCheckAll"){
 }
 tasks.register("CheckAll"){
      group=ciBuild
-     dependsOn(subprojects.map { ":${ it.name} : check"} )       
+     dependsOn(subprojects.map { ":${ it.name} : check"} )  
+     dependsOn(gradle.includedBuilds.map { it.task  (":checkAll")})
 }
